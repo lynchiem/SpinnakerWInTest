@@ -1,0 +1,19 @@
+{
+    "builders": [{
+        "type": "amazon-ebs",
+        "region": "ap-southeast-2",
+        "source_ami": "ami-f3203190",
+        "instance_type": "m3.medium",
+        "ami_name": "lynchie-packer-test-{{timestamp}}",
+        "user_data_file":"./win-userdata.ps1",
+        "communicator": "winrm",
+        "winrm_username": "Administrator"
+    }],
+
+    "provisioners": [
+        {
+            "type": "powershell",
+            "script": "init.ps1"
+        }
+    ]
+}
